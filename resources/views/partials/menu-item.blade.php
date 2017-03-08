@@ -1,20 +1,12 @@
 @if (is_string($item))
-    <li class="header">{{ trans('adminlte::menu.'.$item) }}</li>
-@elseif (isset($item['header']))
-    <li class="header">{{ trans('adminlte::menu.'.$item['header']) }}</li>
+    <li class="header">{{ $item }}</li>
 @else
     <li class="{{ $item['class'] }}">
         <a href="{{ $item['href'] }}"
            @if (isset($item['target'])) target="{{ $item['target'] }}" @endif
         >
             <i class="fa fa-fw fa-{{ $item['icon'] or 'circle-o' }} {{ isset($item['icon_color']) ? 'text-' . $item['icon_color'] : '' }}"></i>
-            <span>
-                @if (isset($item['text']))
-                    $item['text']
-                @else
-                    {{ trans('adminlte::menu.'.$item['lang']) }}
-                @endif
-            </span>
+            <span>{{ $item['text'] }}</span>
             @if (isset($item['label']))
                 <span class="pull-right-container">
                     <span class="label label-{{ $item['label_color'] or 'primary' }} pull-right">{{ $item['label'] }}</span>
