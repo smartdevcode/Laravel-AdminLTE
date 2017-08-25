@@ -11,7 +11,6 @@ use JeroenNoten\LaravelAdminLte\Menu\Builder;
 use JeroenNoten\LaravelAdminLte\Menu\ActiveChecker;
 use JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter;
 use JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter;
-use JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter;
 use JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter;
@@ -24,7 +23,7 @@ class TestCase extends PHPUnit_Framework_TestCase
 
     private $routeCollection;
 
-    protected function makeMenuBuilder($uri = 'http://example.com', GateContract $gate = null, $locale = 'en')
+    protected function makeMenuBuilder($uri = 'http://example.com', GateContract $gate = null)
     {
         return new Builder([
             new HrefFilter($this->makeUrlGenerator($uri)),
@@ -32,15 +31,7 @@ class TestCase extends PHPUnit_Framework_TestCase
             new SubmenuFilter(),
             new ClassesFilter(),
             new GateFilter($gate ?: $this->makeGate()),
-            new LangFilter($this->makeTranslator($locale)),
         ]);
-    }
-
-    protected function makeTranslator($locale = 'en')
-    {
-        $translationLoader = new Illuminate\Translation\FileLoader(new Illuminate\Filesystem\Filesystem, 'resources/lang/');
-
-        return new Illuminate\Translation\Translator($translationLoader, $locale);
     }
 
     protected function makeActiveChecker($uri = 'http://example.com')
