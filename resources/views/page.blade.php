@@ -125,10 +125,6 @@
             @endif
         </div>
         <!-- /.content-wrapper -->
-        
-        <footer class="main-footer">
-            @yield('footer')
-        </footer>
 
     </div>
     <!-- ./wrapper -->
