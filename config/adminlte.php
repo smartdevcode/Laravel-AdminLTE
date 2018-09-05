@@ -211,7 +211,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Choose which JavaScript plugins should be included. At this moment,
-    | DataTables,Select2, Chartjs and SweetAlert are supported as a plugin. Set the value to true
+    | only DataTables is supported as a plugin. Set the value to true
     | to include the JavaScript file from a CDN via a script tag.
     |
     */
@@ -220,6 +220,5 @@ return [
         'datatables' => true,
         'select2'    => true,
         'chartjs'    => true,
-        'sweetalert' => true,
     ],
 ];
