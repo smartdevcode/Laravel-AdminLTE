@@ -117,7 +117,7 @@ return [
         [
             'text'        => 'Pages',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-file',
+            'icon'        => 'file',
             'label'       => 4,
             'label_color' => 'success',
         ],
