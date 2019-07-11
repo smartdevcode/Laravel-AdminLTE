@@ -41,7 +41,7 @@ return [
     |
     | Choose a skin color for your admin panel. The available skin colors:
     | blue, black, purple, yellow, red, and green. Each skin also has a
-    | light variant: blue-light, purple-light, purple-light, etc.
+    | ligth variant: blue-light, purple-light, purple-light, etc.
     |
     */
 
@@ -101,66 +101,63 @@ return [
     |--------------------------------------------------------------------------
     |
     | Specify your menu items to display in the left sidebar. Each menu item
-    | should have a text and a URL. You can also specify an icon from Font
-    | Awesome. A string instead of an array represents a header in sidebar
+    | should have a text and and a URL. You can also specify an icon from
+    | Font Awesome. A string instead of an array represents a header in sidebar
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
+    |
     */
 
     'menu' => [
+        'MAIN NAVIGATION',
         [
-            'text' => 'search',
-            'search' => true,
-        ],
-        ['header' => 'main_navigation'],
-        [
-            'text' => 'blog',
+            'text' => 'Blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
+            'text'        => 'Pages',
             'url'         => 'admin/pages',
-            'icon'        => 'far fa-file',
+            'icon'        => 'file',
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        'ACCOUNT SETTINGS',
         [
-            'text' => 'profile',
+            'text' => 'Profile',
             'url'  => 'admin/settings',
             'icon' => 'user',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Change Password',
             'url'  => 'admin/settings',
             'icon' => 'lock',
         ],
         [
-            'text'    => 'multilevel',
+            'text'    => 'Multilevel',
             'icon'    => 'share',
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Level One',
                     'url'  => '#',
                 ],
                 [
-                    'text'    => 'level_one',
+                    'text'    => 'Level One',
                     'url'     => '#',
                     'submenu' => [
                         [
-                            'text' => 'level_two',
+                            'text' => 'Level Two',
                             'url'  => '#',
                         ],
                         [
-                            'text'    => 'level_two',
+                            'text'    => 'Level Two',
                             'url'     => '#',
                             'submenu' => [
                                 [
-                                    'text' => 'level_three',
+                                    'text' => 'Level Three',
                                     'url'  => '#',
                                 ],
                                 [
-                                    'text' => 'level_three',
+                                    'text' => 'Level Three',
                                     'url'  => '#',
                                 ],
                             ],
@@ -168,22 +165,22 @@ return [
                     ],
                 ],
                 [
-                    'text' => 'level_one',
+                    'text' => 'Level One',
                     'url'  => '#',
                 ],
             ],
         ],
-        ['header' => 'labels'],
+        'LABELS',
         [
-            'text'       => 'important',
+            'text'       => 'Important',
             'icon_color' => 'red',
         ],
         [
-            'text'       => 'warning',
+            'text'       => 'Warning',
             'icon_color' => 'yellow',
         ],
         [
-            'text'       => 'information',
+            'text'       => 'Information',
             'icon_color' => 'aqua',
         ],
     ],
@@ -202,12 +199,10 @@ return [
 
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\SearchFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\SubmenuFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
-        JeroenNoten\LaravelAdminLte\Menu\Filters\LangFilter::class,
     ],
 
     /*
@@ -216,7 +211,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Choose which JavaScript plugins should be included. At this moment,
-    | DataTables,Select2, Chartjs and SweetAlert are supported as a plugin. Set the value to true
+    | only DataTables is supported as a plugin. Set the value to true
     | to include the JavaScript file from a CDN via a script tag.
     |
     */
@@ -225,27 +220,5 @@ return [
         'datatables' => true,
         'select2'    => true,
         'chartjs'    => true,
-        'pace'       => true,
-        'sweetalert' => true,
-    ],
-
-    /*
-     |--------------------------------------------------------------------------
-     | Pace Plugins Initialization
-     |--------------------------------------------------------------------------
-     |
-     | Set color & type value to include the theme file from a CDN via a script tag.
-     |
-     | color options are black, blue, green, orange, pink, purple, red, silver,
-     |   white & yellow
-     |
-     | type options are barber-shop, big-counter, bounce, center-atom, center-circle,
-     |   center-radar, center-simple, corner-indicator, fill-left, flash, flat-top,
-     |   loading-bar, mac-osx, minimal
-     */
-
-    'pace' => [
-        'color' => 'green',
-        'type' => 'center-radar',
     ],
 ];
