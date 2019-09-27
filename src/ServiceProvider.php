@@ -7,11 +7,12 @@ use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Container\Container;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+use JeroenNoten\LaravelAdminLte\Console\AdminLteMakeCommand;
+use JeroenNoten\LaravelAdminLte\Console\MakeAdminLteCommand;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
-use JeroenNoten\LaravelAdminLte\Console\AdminLteInstallCommand;
 use JeroenNoten\LaravelAdminLte\Http\ViewComposers\AdminLteComposer;
 
-class AdminLteServiceProvider extends BaseServiceProvider
+class ServiceProvider extends BaseServiceProvider
 {
     public function register()
     {
@@ -80,7 +81,7 @@ class AdminLteServiceProvider extends BaseServiceProvider
     private function publishAssets()
     {
         $this->publishes([
-            $this->packagePath('resources/assets') => public_path(),
+            $this->packagePath('resources/assets') => public_path('vendor/adminlte'),
         ], 'assets');
     }
 
@@ -91,7 +92,12 @@ class AdminLteServiceProvider extends BaseServiceProvider
 
     private function registerCommands()
     {
-        $this->commands(AdminLteInstallCommand::class);
+        // Laravel >=5.2 only
+        if (class_exists('Illuminate\\Auth\\Console\\MakeAuthCommand')) {
+            $this->commands(MakeAdminLteCommand::class);
+        } elseif (class_exists('Illuminate\\Auth\\Console\\AuthMakeCommand')) {
+            $this->commands(AdminLteMakeCommand::class);
+        }
     }
 
     private function registerViewComposers(Factory $view)

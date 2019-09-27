@@ -30,7 +30,10 @@ class ClassesFilter implements FilterInterface
             if ($topNav) {
                 $classes[] = 'dropdown';
             } else {
-                $classes[] = 'nav-item';
+                $classes[] = 'treeview';
+                if ($item['submenu_open']) {
+                    $classes[] = 'active';
+                }
             }
         }
 
