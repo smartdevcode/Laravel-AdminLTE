@@ -2,8 +2,8 @@
 
 use Illuminate\Config\Repository;
 use Illuminate\Events\Dispatcher;
+use JeroenNoten\LaravelAdminLte\ServiceProvider;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
-use JeroenNoten\LaravelAdminLte\AdminLteServiceProvider;
 
 class ServiceProviderTest extends TestCase
 {
@@ -16,7 +16,7 @@ class ServiceProviderTest extends TestCase
 
         $menuBuilder = $this->makeMenuBuilder();
 
-        AdminLteServiceProvider::registerMenu($events, $config);
+        ServiceProvider::registerMenu($events, $config);
 
         if (method_exists($events, 'dispatch')) {
             $events->dispatch(new BuildingMenu($menuBuilder));
